@@ -5,10 +5,20 @@ namespace GarageBuilder.Vehicles
     {
         // fields
         // ====================================================================
+        private string id;
         private string colour;
+        private int weight;
+        // int size; // optional functionality
+        
 
         // properties
         // ====================================================================
+        public string Id
+        {
+            get {return id;}
+            private set {id = value;}
+        }
+
         public string Colour
         {
             get {return colour;}
@@ -16,6 +26,11 @@ namespace GarageBuilder.Vehicles
             {
                 colour = value;
             }
+        }
+        public int Weight
+        {
+            get {return weight;}
+            private set {weight = value;}
         }
 
         // methods

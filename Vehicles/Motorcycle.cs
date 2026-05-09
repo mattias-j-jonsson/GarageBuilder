@@ -4,11 +4,31 @@ namespace GarageBuilder.Vehicles
     {
         // fields
         // ====================================================================
-        // constructors
-        // ====================================================================
+        private WeightClass weightclass;
+        private int cylinderVolume;
         // properties
+        // ====================================================================
+        public WeightClass Weightclass
+        {
+            get {return weightclass;}
+            set {weightclass = value;}
+        }
+        public int CylinderVolume
+        {
+            get {return cylinderVolume;}
+            set {cylinderVolume = value;}
+        }
+        // constructors
         // ====================================================================
         // methods
         // ====================================================================
+        // types
+        // ====================================================================
+        public enum WeightClass
+        {
+            lightweight,
+            mediumweight,
+            heavyweight
+        }
     }
 }

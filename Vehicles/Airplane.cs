@@ -4,9 +4,22 @@ namespace GarageBuilder.Vehicles
     {
         // fields
         // ====================================================================
-        // constructors
-        // ====================================================================
+        private int numberOfEngines;
+        private int passengerCapacity;
         // properties
+        // ====================================================================
+        public int NumberOfEngines
+        {
+            get {return numberOfEngines;}
+            set {numberOfEngines = value;}
+        }
+
+        public int PassengerCapacity
+        {
+            get {return passengerCapacity;}
+            set {passengerCapacity = value;}
+        }
+        // constructors
         // ====================================================================
         // methods
         // ====================================================================

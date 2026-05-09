@@ -10,12 +10,6 @@ namespace GarageBuilder
         // ====================================================================
         private Vehicle[] storageSpace = null;
 
-        // constructors
-        // ====================================================================
-        public Garage(int capacity)
-        {
-            StorageSpace = new Vehicle[capacity];
-        }
         // properties
         // ====================================================================
         public Vehicle[] StorageSpace
@@ -25,6 +19,12 @@ namespace GarageBuilder
             {
                 storageSpace = value;
             }
+        }
+        // constructors
+        // ====================================================================
+        public Garage(int capacity)
+        {
+            StorageSpace = new Vehicle[capacity];
         }
         // methods
         // ====================================================================
