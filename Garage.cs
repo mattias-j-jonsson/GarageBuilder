@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using GarageBuilder.Vehicles;
@@ -8,14 +9,14 @@ namespace GarageBuilder
     {
         // fields
         // ====================================================================
-        private Vehicle[] storageSpace = null;
+        private Vehicle[] storageSpace = Array.Empty<Vehicle>();
 
         // properties
         // ====================================================================
-        public Vehicle[] StorageSpace
+        private Vehicle[] StorageSpace
         {
             get {return storageSpace;}
-            private set
+            set
             {
                 storageSpace = value;
             }
