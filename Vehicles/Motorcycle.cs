@@ -20,6 +20,11 @@ namespace GarageBuilder.Vehicles
         }
         // constructors
         // ====================================================================
+        public Motorcycle(string id, string colour, int weight, WeightClass weightclass, int cylinderVolume) : base(id, colour, weight)
+        {
+            this.Weightclass = weightclass;
+            this.CylinderVolume = cylinderVolume;
+        }
         // methods
         // ====================================================================
         // types

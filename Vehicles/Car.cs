@@ -21,6 +21,11 @@ namespace GarageBuilder.Vehicles
         }
         // constructors
         // ====================================================================
+        public Car(string id, string colour, int weight, bool fourWheelDrive, bool electric) : base(id, colour, weight)
+        {
+            this.FourWheelDrive = fourWheelDrive;
+            this.Electric = electric;
+        }
         // methods
         // ====================================================================
     }

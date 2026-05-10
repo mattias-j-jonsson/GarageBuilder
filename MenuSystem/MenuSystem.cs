@@ -5,7 +5,7 @@ namespace GarageBuilder
 {
     public static class MenuSystem
     {
-        public static void LoadFromFile()
+        public static void LoadGarageFromFile()
         {
             return;
         }

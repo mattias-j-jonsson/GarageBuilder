@@ -1,7 +1,9 @@
 
+using System.ComponentModel.DataAnnotations;
+
 namespace GarageBuilder.Vehicles
 {
-    internal class Vehicle
+    internal abstract class Vehicle
     {
         // fields
         // ====================================================================
@@ -33,6 +35,14 @@ namespace GarageBuilder.Vehicles
             private set {weight = value;}
         }
 
+        // constructors
+        // ====================================================================
+        public Vehicle(string id, string colour, int weight)
+        {
+            this.Id = id;
+            this.Colour = colour;
+            this.Weight = weight;
+        }
         // methods
         // ====================================================================
     }

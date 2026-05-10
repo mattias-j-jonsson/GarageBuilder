@@ -20,6 +20,11 @@ namespace GarageBuilder.Vehicles
         }
         // constructors
         // ====================================================================
+        public Bus(string id, string colour, int weight, bool electric, int passengerCapacity) : base(id, colour, weight)
+        {
+            this.Electric = electric;
+            this.PassengerCapacity = passengerCapacity;
+        }
         // methods
         // ====================================================================
     }

@@ -14,6 +14,10 @@ namespace GarageBuilder.Vehicles
         } 
         // constructors
         // ====================================================================
+        public Boat(string id, string colour, int weight, Type boatType) : base(id, colour, weight)
+        {
+            this.BoatType = boatType;
+        }
         // methods
         // ====================================================================
         // Types

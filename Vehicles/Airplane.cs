@@ -21,6 +21,11 @@ namespace GarageBuilder.Vehicles
         }
         // constructors
         // ====================================================================
+        public Airplane(string id, string colour, int weight, int engines, int passengerCapacity) : base(id, colour, weight)
+        {
+            this.NumberOfEngines = engines;
+            this.PassengerCapacity = passengerCapacity;
+        }
         // methods
         // ====================================================================
     }
