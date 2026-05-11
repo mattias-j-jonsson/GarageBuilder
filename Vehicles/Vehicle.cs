@@ -1,4 +1,5 @@
 
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
@@ -33,7 +34,14 @@ namespace GarageBuilder.Vehicles
         public int Weight
         {
             get {return weight;}
-            private set {weight = value;}
+            private set
+            {
+                if (value <= 0)
+                {
+                    // throw new ArgumentOutOfRangeException()
+                }
+                weight = value;
+            }
         }
 
         // constructors
@@ -48,7 +56,9 @@ namespace GarageBuilder.Vehicles
         // ====================================================================
         public override string ToString()
         {
+            string typeAsString = this.GetType().ToString().Split(".")[2];
             StringBuilder sb = new StringBuilder();
+            sb.Append("Type: ").Append(typeAsString).Append("    ");
             sb.Append("ID: ").Append(Id).Append("    ");
             sb.Append("Colour: ").Append(Colour).Append("    ");
             sb.Append("Weight: ").Append(Weight).Append("    ");

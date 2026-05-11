@@ -11,6 +11,7 @@ namespace GarageBuilder
         // fields
         // ====================================================================
         private Vehicle[] storageSpace = Array.Empty<Vehicle>();
+        
 
         // properties
         // ====================================================================
@@ -30,6 +31,10 @@ namespace GarageBuilder
         }
         // methods
         // ====================================================================
+        public void AddVehicle(Vehicle v)
+        {
+            
+        }
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
