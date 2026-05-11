@@ -47,7 +47,7 @@ namespace GarageBuilder
 
         public static string MainMenu()
         {
-            string[] menuOptions = ["Add vehicle", "Remove vehicle", "Find vehicle"];
+            string[] menuOptions = ["Add vehicle", "Remove vehicle", "Find vehicle", "Print garage inventory", "Quit"];
             return DrawChoiceMenu(menuOptions, "What do you want do do?");
         }
 

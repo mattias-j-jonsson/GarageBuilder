@@ -11,7 +11,15 @@ namespace GarageBuilder
         // fields
         // ====================================================================
         private Vehicle[] storageSpace = Array.Empty<Vehicle>();
-        
+        // private bool isFull;
+        private int capacity;
+
+        private int airplaneCount = 0;
+        private int boatCount = 0;
+        private int busCount = 0;
+        private int carCount = 0;
+        private int motorcycleCount = 0;
+        // private int vehicleCount;
 
         // properties
         // ====================================================================
@@ -23,25 +31,79 @@ namespace GarageBuilder
                 storageSpace = value;
             }
         }
+        public int Capacity
+        {
+            get {return capacity;}
+            private set {capacity = value;}
+        }
+
+        public int VehicleCount
+        {
+            get {return airplaneCount + boatCount + busCount + carCount + motorcycleCount;}
+        }
+
+        public bool IsFull
+        {
+            get {return Capacity-VehicleCount <= 0;}
+        }
         // constructors
         // ====================================================================
         public Garage(int capacity)
         {
             StorageSpace = new Vehicle[capacity];
+            this.Capacity = capacity;
         }
         // methods
         // ====================================================================
         public void AddVehicle(Vehicle v)
         {
-            
+            if (VehicleCount < Capacity)
+            {
+                int index = 0;
+                while (StorageSpace[index] != null)
+                {
+                    index++;
+                }
+                storageSpace[index] = v; // should copy rather than put input reference?
+                if (v is Airplane)
+                {
+                    airplaneCount++;
+                }
+                else if (v is Boat)
+                {
+                    boatCount++;
+                }
+                else if (v is Bus)
+                {
+                    busCount++;
+                }
+                else if (v is Car)
+                {
+                    carCount++;
+                }
+                else if (v is Motorcycle)
+                {
+                    motorcycleCount++;
+                }
+            }
+            else
+            {
+                Console.WriteLine("The garage has reached its limit. Please remove vehicles to free up space");
+            }
         }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < StorageSpace.Length; i++)
             {
-                sb.Append(StorageSpace[i]);
+                if (StorageSpace[i] != null)
+                {
+                    sb.Append(StorageSpace[i]);
+                    sb.Append('\n');
+                }
             }
+            sb.Remove(sb.Length-1, 1);
             return sb.ToString();
         }
     }
