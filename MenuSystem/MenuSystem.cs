@@ -51,6 +51,57 @@ namespace GarageBuilder
             return DrawChoiceMenu(menuOptions, "What do you want do do?");
         }
 
+        public static Vehicle GatherVehicleDetails()
+        {
+            string[] menuOptions = ["Airplane", "Boat", "Bus", "Car", "Motorcycle"];
+            string vehicleTyoe = DrawChoiceMenu(menuOptions, "What kind of vehicle do you want to add?");
+            string id = DrawInputMenu("What id does the vehicle have?", "Input (on the form \"ABC123\")");
+            string colour = DrawInputMenu("What coulour is the vehicle?");
+            bool parseSuccess = int.TryParse(DrawInputMenu("What is its weight?"), out int weight);
+            switch (vehicleTyoe)
+            {
+                case "Airplane":
+                    int numberOfEngines = int.Parse(DrawChoiceMenu(["1", "2", "3", "4"], "How many engines does the airplane have?"));
+                    parseSuccess = int.TryParse(DrawInputMenu("What is the passenger capacity?"), out int passengerCapacity);
+                    return new Airplane(id, colour, weight, numberOfEngines, passengerCapacity);
+                case "Boat":
+                    menuOptions = ["outboarder", "inboarder", "sailboat"];
+                    string boatType = DrawChoiceMenu(menuOptions, "What kind of boat is it?");
+                    int i;
+                    for(i = 0; i < menuOptions.Length; i++)
+                    {
+                        if(boatType == menuOptions[i])
+                        {
+                            break;
+                        }
+                    }
+                    return new Boat(id, colour, weight, (Boat.Type) i);
+                case "Bus":
+                    bool electric = DrawChoiceMenu(["Yes", "No"], "Does the bus run on electricity?") == "Yes";
+                    parseSuccess = int.TryParse(DrawInputMenu("What is the passenger capacity?"), out passengerCapacity);
+                    return new Bus(id, colour, weight, electric, passengerCapacity);
+                case "Car":
+                    bool fourWheelDrive = DrawChoiceMenu(["Yes", "No"], "Is it a four wheel drive?") == "Yes";
+                    electric = DrawChoiceMenu(["Yes", "No"], "Does the car run on electricity?") == "Yes";
+                    return new Car(id, colour, weight, fourWheelDrive, electric);
+                case "Motorcycle":
+                    menuOptions = ["lightweight", "mediumweight", "heavyweight"];
+                    string weightclass = DrawChoiceMenu(menuOptions, "What weightclass is it?");
+                    for(i = 0; i < menuOptions.Length; i++)
+                    {
+                        if(weightclass == menuOptions[i])
+                        {
+                            break;
+                        }
+                    }
+                    parseSuccess = int.TryParse(DrawInputMenu("What is the cylinder volume of the bike?"), out int cylinderVolume);
+                    return new Motorcycle(id, colour, weight, (Motorcycle.WeightClass) i, cylinderVolume);
+                default:
+                    break;
+            }
+            return null;
+        }
+
         public static int CreateGarageMenu(int currentInventory)
         {
             string input = DrawInputMenu("What size of garage do you want?");
