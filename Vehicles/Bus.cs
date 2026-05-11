@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace GarageBuilder.Vehicles
 {
     class Bus : Vehicle
@@ -27,5 +29,13 @@ namespace GarageBuilder.Vehicles
         }
         // methods
         // ====================================================================
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(base.ToString());
+            sb.Append("Electric: ").Append(Electric).Append("    ");
+            sb.Append("Passenger capacity: ").Append(PassengerCapacity);
+            return sb.ToString();
+        }
     }
 }

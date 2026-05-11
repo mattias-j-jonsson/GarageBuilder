@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace GarageBuilder.Vehicles
 {
     class Motorcycle : Vehicle
@@ -27,6 +29,14 @@ namespace GarageBuilder.Vehicles
         }
         // methods
         // ====================================================================
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(base.ToString());
+            sb.Append("Weight class: ").Append(nameof(Weightclass)).Append("    ");
+            sb.Append("Cylinder volume: ").Append(CylinderVolume);
+            return sb.ToString();
+        }
         // types
         // ====================================================================
         public enum WeightClass

@@ -1,5 +1,6 @@
 
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace GarageBuilder.Vehicles
 {
@@ -45,5 +46,13 @@ namespace GarageBuilder.Vehicles
         }
         // methods
         // ====================================================================
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("ID: ").Append(Id).Append("    ");
+            sb.Append("Colour: ").Append(Colour).Append("    ");
+            sb.Append("Weight: ").Append(Weight).Append("    ");
+            return sb.ToString();
+        }
     }
 }

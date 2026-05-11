@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace GarageBuilder.Vehicles
 {
     class Car : Vehicle
@@ -28,5 +30,13 @@ namespace GarageBuilder.Vehicles
         }
         // methods
         // ====================================================================
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(base.ToString());
+            sb.Append("Four wheel drive: ").Append(FourWheelDrive).Append("    ");
+            sb.Append("Electric: ").Append(Electric);
+            return sb.ToString();
+        }
     }
 }

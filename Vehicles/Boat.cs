@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace GarageBuilder.Vehicles
 {
     class Boat : Vehicle
@@ -20,6 +22,13 @@ namespace GarageBuilder.Vehicles
         }
         // methods
         // ====================================================================
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(base.ToString());
+            sb.Append("Boat type: ").Append(nameof(BoatType));
+            return sb.ToString();
+        }
         // Types
         // ====================================================================
         public enum Type
