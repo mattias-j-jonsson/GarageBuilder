@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Text.RegularExpressions;
 using GarageBuilder.Vehicles;
 
@@ -29,5 +30,14 @@ namespace GarageBuilder
         }
         // methods
         // ====================================================================
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < StorageSpace.Length; i++)
+            {
+                sb.Append(StorageSpace[i]);
+            }
+            return sb.ToString();
+        }
     }
 }
