@@ -91,6 +91,40 @@ namespace GarageBuilder
             }
         }
 
+        public void RemoveVehicle(int index)
+        {
+            return;
+        }
+
+
+        public Vehicle? FindVehicle(string type = "", string id = "", string colour = "", int weight = 0)
+        {
+            foreach (Vehicle current in StorageSpace)
+            {
+                if(type != string.Empty && current.GetType().Name.ToUpper() != type.ToUpper())
+                {
+                    break;
+                }
+                else if (id != string.Empty && current.Id.ToUpper() != id.ToUpper())
+                {
+                    break;
+                }
+                else if (colour != string.Empty && current.Colour.ToUpper() != colour.ToUpper())
+                {
+                    break;
+                }
+                else if (weight != 0 && current.Weight != weight)
+                {
+                    break;
+                }
+                else
+                {
+                    return current;
+                }
+            }
+            return null;
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -106,4 +140,6 @@ namespace GarageBuilder
             return sb.ToString();
         }
     }
+
+
 }

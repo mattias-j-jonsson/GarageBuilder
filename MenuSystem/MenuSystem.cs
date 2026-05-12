@@ -34,7 +34,7 @@ namespace GarageBuilder
         }
         public static bool LoadFileMenu()
         {
-            string result = DrawChoiceMenuNoIndex(["Yes", "No"], "Would you like to load data from file?");
+            string result = DrawChoiceMenu(["Yes", "No"], "Would you like to load data from file?");
             if (result.CompareTo("Yes") == 0)
             {
                 return true;
@@ -48,20 +48,20 @@ namespace GarageBuilder
         public static string MainMenu() // implement with the out int index variable?
         {
             string[] menuOptions = ["Add vehicle", "Remove vehicle", "Find vehicle", "Print garage inventory", "Quit"];
-            return DrawChoiceMenuNoIndex(menuOptions, "What do you want do do?");
+            return DrawChoiceMenu(menuOptions, "What do you want do do?");
         }
 
         public static Vehicle GatherVehicleDetails()
         {
             string[] menuOptions = ["Airplane", "Boat", "Bus", "Car", "Motorcycle"];
-            string vehicleTyoe = DrawChoiceMenuNoIndex(menuOptions, "What kind of vehicle do you want to add?");
+            string vehicleTyoe = DrawChoiceMenu(menuOptions, "What kind of vehicle do you want to add?");
             string id = DrawInputMenu("What id does the vehicle have?", "Input (on the form \"ABC123\")");
             string colour = DrawInputMenu("What coulour is the vehicle?");
             bool parseSuccess = int.TryParse(DrawInputMenu("What is its weight?"), out int weight);
             switch (vehicleTyoe)
             {
                 case "Airplane":
-                    int numberOfEngines = int.Parse(DrawChoiceMenuNoIndex(["1", "2", "3", "4"], "How many engines does the airplane have?"));
+                    int numberOfEngines = int.Parse(DrawChoiceMenu(["1", "2", "3", "4"], "How many engines does the airplane have?"));
                     parseSuccess = int.TryParse(DrawInputMenu("What is the passenger capacity?"), out int passengerCapacity);
                     return new Airplane(id, colour, weight, numberOfEngines, passengerCapacity);
                 case "Boat":
@@ -70,12 +70,12 @@ namespace GarageBuilder
                     string boatType = DrawChoiceMenu(menuOptions, out indexOfEnum, "What kind of boat is it?");
                     return new Boat(id, colour, weight, (Boat.Type) indexOfEnum);
                 case "Bus":
-                    bool electric = DrawChoiceMenuNoIndex(["Yes", "No"], "Does the bus run on electricity?") == "Yes";
+                    bool electric = DrawChoiceMenu(["Yes", "No"], "Does the bus run on electricity?") == "Yes";
                     parseSuccess = int.TryParse(DrawInputMenu("What is the passenger capacity?"), out passengerCapacity);
                     return new Bus(id, colour, weight, electric, passengerCapacity);
                 case "Car":
-                    bool fourWheelDrive = DrawChoiceMenuNoIndex(["Yes", "No"], "Is it a four wheel drive?") == "Yes";
-                    electric = DrawChoiceMenuNoIndex(["Yes", "No"], "Does the car run on electricity?") == "Yes";
+                    bool fourWheelDrive = DrawChoiceMenu(["Yes", "No"], "Is it a four wheel drive?") == "Yes";
+                    electric = DrawChoiceMenu(["Yes", "No"], "Does the car run on electricity?") == "Yes";
                     return new Car(id, colour, weight, fourWheelDrive, electric);
                 case "Motorcycle":
                     menuOptions = ["lightweight", "mediumweight", "heavyweight"];
@@ -102,10 +102,13 @@ namespace GarageBuilder
             }
         }
 
-        public static string DrawChoiceMenuNoIndex(string[] menuOptions, string optionalMessage = "")
+        // For some use cases it is more helpful to use the index of chosen menu option, rather
+        // than the string of said option. Therefore there are two versions of DrawChoiceMenu,
+        // one which catches that index as an "out" int variable, and one that just returns 
+        // the chosen string.
+        public static string DrawChoiceMenu(string[] menuOptions, string optionalMessage = "")
         {
-            int throwAwayIndexVariable;
-            return DrawChoiceMenu(menuOptions, out throwAwayIndexVariable, optionalMessage);
+            return DrawChoiceMenu(menuOptions, out int throwAwayIndexVariable, optionalMessage);
         }
         public static string DrawChoiceMenu(string[] menuOptions, out int menuIndex, string optionalMessage = "")
         {
