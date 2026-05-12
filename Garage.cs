@@ -97,8 +97,10 @@ namespace GarageBuilder
         }
 
 
-        public Vehicle? FindVehicle(string type = "", string id = "", string colour = "", int weight = 0)
+        public Vehicle[] FindVehicle(string type = "", string id = "", string colour = "", int weight = 0)
         {
+            Vehicle[] foundVehicles = new Vehicle[VehicleCount];
+            int counter = 0;
             foreach (Vehicle current in StorageSpace)
             {
                 if(type != string.Empty && current.GetType().Name.ToUpper() != type.ToUpper())
@@ -119,10 +121,15 @@ namespace GarageBuilder
                 }
                 else
                 {
-                    return current;
+                    foundVehicles[counter] = current;
+                    counter++;
                 }
             }
-            return null;
+
+            
+            Vehicle[] returnArray = new Vehicle[counter];
+            Array.Copy(foundVehicles, returnArray, counter);
+            return returnArray;            
         }
 
         public override string ToString()
