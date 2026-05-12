@@ -33,7 +33,7 @@ namespace GarageBuilder.Vehicles
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(base.ToString());
-            sb.Append("Weight class: ").Append(nameof(Weightclass)).Append("    ");
+            sb.Append("Weight class: ").Append(Weightclass).Append("    ");
             sb.Append("Cylinder volume: ").Append(CylinderVolume);
             return sb.ToString();
         }

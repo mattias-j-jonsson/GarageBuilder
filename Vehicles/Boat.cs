@@ -26,7 +26,7 @@ namespace GarageBuilder.Vehicles
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(base.ToString());
-            sb.Append("Boat type: ").Append(nameof(BoatType));
+            sb.Append("Boat type: ").Append(BoatType);
             return sb.ToString();
         }
         // Types

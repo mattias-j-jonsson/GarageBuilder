@@ -19,7 +19,6 @@ namespace GarageBuilder
         private int busCount = 0;
         private int carCount = 0;
         private int motorcycleCount = 0;
-        // private int vehicleCount;
 
         // properties
         // ====================================================================
