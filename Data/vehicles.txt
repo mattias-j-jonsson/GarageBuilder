@@ -1,0 +1,3 @@
+Car;id:OKU819;colour:white;weight:1200;fourwheeldrive:false;electric:false
+Bus;id:sle763;colour:red;weight:3400;electric:true;passengercapacity:34
+Airplane;id:hbc092;colour:blue;weight:12000;numberofengines:2;passengercapacity:15
