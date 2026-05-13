@@ -7,8 +7,6 @@ namespace GarageBuilder
 {
     class Program
     {
-
-
         static void Main()
         {
             int size = MenuSystem.PrelimenaryMenu();
@@ -29,7 +27,8 @@ namespace GarageBuilder
             bool running = true;
             while(running)
             {
-                string menuChoice = MenuSystem.MainMenu().Split(" ")[0];
+                string[] menuOptions = ["Add vehicle", "Remove vehicle", "Find vehicle", "Print garage inventory", "Quit"];
+                string menuChoice = MenuSystem.MainMenu(menuOptions).Split(" ")[0];
                 switch (menuChoice)
                 {
                     case "Quit":
@@ -46,14 +45,63 @@ namespace GarageBuilder
                         }
                         else
                         {
-                            Vehicle newVehicle = MenuSystem.GatherVehicleDetails();
-                            garage.AddVehicle(newVehicle);
+                            try
+                            {
+                                Vehicle newVehicle = MenuSystem.GatherVehicleDetails();
+                                garage.AddVehicle(newVehicle);
+                            }
+                            catch (System.Exception e)
+                            {
+                                Console.WriteLine($"Error: {e.Message}\nVehicle insert aborted. Press ENTER to return to menu");
+                                Console.Read();
+                            }
                         }
+                        break;
+                    case "Find":
+                        MenuSystem.FindVehicleMenu(out string type, out string id, out string colour, out int weight);
+                        Vehicle[] foundVehicles = garage.FindVehicle(type, id, colour, weight);
+                        if (foundVehicles.Length == 0)
+                        {
+                            Console.WriteLine("No vehicles matched these criterias.");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{foundVehicles.Length} vehicles was found:");
+                            foreach (var v in foundVehicles)
+                            {
+                                Console.WriteLine(v);
+                            }                            
+                        }
+                        Console.Read();
                         break;
                     default:
                         break;
                 }
             }
         }
+
+
+        // DEBUG VERSION OF MAIN
+        // static void Main()
+        // {
+        //     Garage garage = new Garage(12);
+        //     string pathToFile = Environment.CurrentDirectory;
+        //     pathToFile = pathToFile.Substring(pathToFile.IndexOf("GarageBuilder"));
+        //     pathToFile = Path.GetRelativePath(pathToFile, "GarageBuilder/Data/vehicles.txt");
+        //     List<Vehicle> fileInput = MenuSystem.LoadVehiclesFromFile(pathToFile);
+        //     foreach (var item in fileInput)
+        //     {
+        //         garage.AddVehicle(item);
+        //     }
+
+        //     Console.WriteLine(garage.ToString());
+        //     // Console.Read();
+        //     Vehicle[] foundVehicles = garage.FindVehicle("", "", "", 0);
+        //     foreach (var v in foundVehicles)
+        //     {
+        //         Console.WriteLine(v);
+        //     }
+        //     // Console.Read();
+        // }
     }
 }
