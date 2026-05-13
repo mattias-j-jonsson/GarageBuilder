@@ -99,25 +99,33 @@ namespace GarageBuilder
 
         public Vehicle[] FindVehicle(string type = "", string id = "", string colour = "", int weight = 0)
         {
+            if(type == "" && id == "" && colour == "" && weight == 0)
+            {
+                return [];
+            }
             Vehicle[] foundVehicles = new Vehicle[VehicleCount];
             int counter = 0;
             foreach (Vehicle current in StorageSpace)
             {
-                if(type != string.Empty && current.GetType().Name.ToUpper() != type.ToUpper())
+                if(current == null)
                 {
-                    break;
+                    continue;
+                }
+                else if(type != string.Empty && current.GetType().Name.ToUpper() != type.ToUpper())
+                {
+                    continue;
                 }
                 else if (id != string.Empty && current.Id.ToUpper() != id.ToUpper())
                 {
-                    break;
+                    continue;
                 }
                 else if (colour != string.Empty && current.Colour.ToUpper() != colour.ToUpper())
                 {
-                    break;
+                    continue;
                 }
                 else if (weight != 0 && current.Weight != weight)
                 {
-                    break;
+                    continue;
                 }
                 else
                 {

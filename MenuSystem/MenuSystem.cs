@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -45,9 +46,8 @@ namespace GarageBuilder
             }
         }
 
-        public static string MainMenu() // implement with the out int index variable?
+        public static string MainMenu(string[] menuOptions) // implement with the out int index variable?
         {
-            string[] menuOptions = ["Add vehicle", "Remove vehicle", "Find vehicle", "Print garage inventory", "Quit"];
             return DrawChoiceMenu(menuOptions, "What do you want do do?");
         }
 
@@ -100,6 +100,28 @@ namespace GarageBuilder
             {
                 return -1;
             }
+        }
+
+        public static void FindVehicleMenu(out string type, out string id, out string colour, out int weight)
+        {
+            // string choice = DrawChoiceMenu(["Yes", "No"], "Do you want to find a specific kind of vehicle?");
+            type = DrawChoiceMenu(["Airplane", "Boat", "Bus", "Car", "Motorcycle", "Any kind"], "What kind of vehicle?");
+            if(type == "Any kind")
+            {
+                type = string.Empty;
+            }
+            
+            
+            // choice = DrawChoiceMenu(["Yes", "No"], "Do you want to find a specific vehicle ID?");
+            
+            id = DrawInputMenu("Please type in the ID you want to find. (press ENTER to skip)", "ID");
+            
+
+            // choice = DrawChoiceMenu(["Yes", "No"], "Do you want to find a vehicle with specific vehicle ID?");
+            colour = DrawInputMenu("Please type colour of the vehicle you want to find. (press ENTER to skip)", "Colour");
+            
+            bool parseSuccess = int.TryParse(DrawInputMenu("Please type weight of the vehicle you want to find. (press ENTER to skip)", "Weight"), out weight);
+
         }
 
         // For some use cases it is more helpful to use the index of chosen menu option, rather
