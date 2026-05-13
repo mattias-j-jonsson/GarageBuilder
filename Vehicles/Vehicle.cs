@@ -20,7 +20,18 @@ namespace GarageBuilder.Vehicles
         public string Id
         {
             get {return id;}
-            private set {id = value;}
+            private set
+            {
+                if(IsValidVehicleId(value))
+                {
+                    id = value;
+                }
+                else
+                {
+                    throw new ArgumentException("ID must be on form \"ABC123\"");
+                }
+                
+            }
         }
 
         public string Colour
@@ -38,7 +49,7 @@ namespace GarageBuilder.Vehicles
             {
                 if (value <= 0)
                 {
-                    // throw new ArgumentOutOfRangeException()
+                    throw new ArgumentOutOfRangeException("Weight must be a positive integer");
                 }
                 weight = value;
             }
@@ -48,12 +59,24 @@ namespace GarageBuilder.Vehicles
         // ====================================================================
         public Vehicle(string id, string colour, int weight)
         {
-            this.Id = id;
-            this.Colour = colour;
+            this.Id = id.ToUpper();
+            this.Colour = colour.ToUpper();
             this.Weight = weight;
         }
         // methods
         // ====================================================================
+        private bool IsValidVehicleId(string id)
+        {
+            Console.WriteLine("in validator. ID: " + id);
+            bool correctLength = id.Length == 6;
+            if (correctLength == false)
+            {
+                return false;
+            }
+            bool parseFirstHalfId = char.IsLetter(id[0]) && char.IsLetter(id[1]) && char.IsLetter(id[2]);
+            bool parseSecondHalfId = int.TryParse(id.Substring(3, 3), out int throwAwayNumber);
+            return parseFirstHalfId && parseSecondHalfId;
+        }
         public override string ToString()
         {
             string typeAsString = this.GetType().ToString().Split(".")[2];

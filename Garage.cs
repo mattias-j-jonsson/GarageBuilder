@@ -56,7 +56,17 @@ namespace GarageBuilder
         // ====================================================================
         public void AddVehicle(Vehicle v)
         {
-            if (VehicleCount < Capacity)
+            // Console.WriteLine($"capacity: {capacity} VehicleCount: {VehicleCount}");
+            if (VehicleCount >= Capacity)
+            {
+                Console.WriteLine("The garage has reached its limit. Please remove vehicles to free up space");
+                Console.Read();
+            } else if (IdExists(v.Id) == true)
+            {
+                Console.WriteLine($"ID {v.Id} already exists. Duplicate ID's are NOT allowed.");
+                Console.Read();
+            }
+            else
             {
                 int index = 0;
                 while (StorageSpace[index] != null)
@@ -85,10 +95,22 @@ namespace GarageBuilder
                     motorcycleCount++;
                 }
             }
-            else
+        }
+
+        private bool IdExists(string id)
+        {
+            foreach (Vehicle current in storageSpace)
             {
-                Console.WriteLine("The garage has reached its limit. Please remove vehicles to free up space");
+                try
+                {
+                    if(id == current.Id)
+                    {
+                        return true;
+                    }
+                }
+                catch {}
             }
+            return false;
         }
 
         public void RemoveVehicle(int index)
@@ -142,6 +164,8 @@ namespace GarageBuilder
 
         public override string ToString()
         {
+            if(VehicleCount > 0)
+            {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < StorageSpace.Length; i++)
             {
@@ -153,6 +177,11 @@ namespace GarageBuilder
             }
             sb.Remove(sb.Length-1, 1);
             return sb.ToString();
+            }
+            else
+            {
+                return "Garage is empty";
+            }
         }
     }
 
