@@ -12,6 +12,7 @@ namespace GarageBuilder.Vehicles
         private string id;
         private string colour;
         private int weight;
+        private const int maxWeight = 800000;
         // int size; // optional functionality
         
 
@@ -28,7 +29,7 @@ namespace GarageBuilder.Vehicles
                 }
                 else
                 {
-                    throw new ArgumentException("ID must be on form \"ABC123\"");
+                    throw new ArgumentException("ID must be on form \"ABC123\"", nameof(id));
                 }
                 
             }
@@ -49,7 +50,11 @@ namespace GarageBuilder.Vehicles
             {
                 if (value <= 0)
                 {
-                    throw new ArgumentOutOfRangeException("Weight must be a positive integer");
+                    throw new ArgumentOutOfRangeException("Weight must be a positive integer", nameof(weight));
+                }
+                else if (value > maxWeight)
+                {
+                    throw new ArgumentOutOfRangeException($"Weight cannot be greater than {maxWeight} kg.", nameof(weight));
                 }
                 weight = value;
             }
@@ -67,7 +72,6 @@ namespace GarageBuilder.Vehicles
         // ====================================================================
         private bool IsValidVehicleId(string id)
         {
-            Console.WriteLine("in validator. ID: " + id);
             bool correctLength = id.Length == 6;
             if (correctLength == false)
             {
