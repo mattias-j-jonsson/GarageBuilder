@@ -13,7 +13,10 @@ namespace GarageBuilder.Vehicles
         {
             get {return boatType;}
             set {boatType = value;}
-        } 
+        }
+
+        // text alignment helper properties
+        public override int propertyLengthIndividualProp1 => BoatType.ToString().Length + "Boat type".Length;
         // constructors
         // ====================================================================
         public Boat(string id, string colour, int weight, Type boatType) : base(id, colour, weight)

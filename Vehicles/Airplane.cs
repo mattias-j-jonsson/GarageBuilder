@@ -21,6 +21,11 @@ namespace GarageBuilder.Vehicles
             get {return passengerCapacity;}
             set {passengerCapacity = value;}
         }
+
+        // text alignment helper properties
+        public override int propertyLengthIndividualProp1 => NumberOfEngines.ToString().Length + "Number of engines".Length;
+        public override int propertyLengthIndividualProp2 => PassengerCapacity.ToString().Length + "Passenger capacity".Length;
+
         // constructors
         // ====================================================================
         public Airplane(string id, string colour, int weight, int engines, int passengerCapacity) : base(id, colour, weight)

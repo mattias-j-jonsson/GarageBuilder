@@ -60,6 +60,14 @@ namespace GarageBuilder.Vehicles
             }
         }
 
+        // some simple properties used for formatting output consisting of Vehicles properties
+        public int propertyLengthType {get {return this.GetType().Name.Length;}}
+        public int propertyLengthID {get {return this.Id.Length;}}
+        public int propertyLengthWeight {get {return this.Weight.ToString().Length;}}
+        public virtual int propertyLengthIndividualProp1 {get {return 0;}}
+        public virtual int propertyLengthIndividualProp2 {get {return 0;}}
+        public virtual int propertyLengthIndividualProp3 {get {return 0;}}
+
         // constructors
         // ====================================================================
         public Vehicle(string id, string colour, int weight)

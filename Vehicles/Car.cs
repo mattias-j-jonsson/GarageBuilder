@@ -21,6 +21,10 @@ namespace GarageBuilder.Vehicles
             get {return electric;}
             set {electric = value;}
         }
+
+        // text alignment helper properties
+        public override int propertyLengthIndividualProp1 => FourWheelDrive.ToString().Length + "Four wheel drive".Length;
+        public override int propertyLengthIndividualProp2 => Electric.ToString().Length + "Electric".Length;
         // constructors
         // ====================================================================
         public Car(string id, string colour, int weight, bool fourWheelDrive, bool electric) : base(id, colour, weight)

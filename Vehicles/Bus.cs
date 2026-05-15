@@ -20,6 +20,10 @@ namespace GarageBuilder.Vehicles
             get {return passengerCapacity;}
             set {passengerCapacity = value;}
         }
+
+        // text alignment helper properties
+        public override int propertyLengthIndividualProp1 => Electric.ToString().Length + "Electric".Length;
+        public override int propertyLengthIndividualProp2 => PassengerCapacity.ToString().Length + "Passenger capacity".Length;
         // constructors
         // ====================================================================
         public Bus(string id, string colour, int weight, bool electric, int passengerCapacity) : base(id, colour, weight)

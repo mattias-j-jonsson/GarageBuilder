@@ -20,6 +20,10 @@ namespace GarageBuilder.Vehicles
             get {return cylinderVolume;}
             set {cylinderVolume = value;}
         }
+
+        // text alignment helper properties
+        public override int propertyLengthIndividualProp1 => Weightclass.ToString().Length + "Weight class".Length;
+        public override int propertyLengthIndividualProp2 => CylinderVolume.ToString().Length + "Cylinder volume".Length;
         // constructors
         // ====================================================================
         public Motorcycle(string id, string colour, int weight, WeightClass weightclass, int cylinderVolume) : base(id, colour, weight)

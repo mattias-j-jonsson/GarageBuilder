@@ -166,17 +166,18 @@ namespace GarageBuilder
         {
             if(VehicleCount > 0)
             {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < StorageSpace.Length; i++)
-            {
-                if (StorageSpace[i] != null)
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < StorageSpace.Length; i++)
                 {
-                    sb.Append(StorageSpace[i]);
-                    sb.Append('\n');
+                    if (StorageSpace[i] != null)
+                    {
+                        sb.Append("Type length: " + StorageSpace[i].propeprtyLengthType + " ");
+                        sb.Append(StorageSpace[i]);
+                        sb.Append('\n');
+                    }
                 }
-            }
-            sb.Remove(sb.Length-1, 1);
-            return sb.ToString();
+                sb.Remove(sb.Length-1, 1);
+                return sb.ToString();
             }
             else
             {
