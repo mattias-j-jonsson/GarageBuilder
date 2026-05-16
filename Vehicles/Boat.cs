@@ -32,6 +32,15 @@ namespace GarageBuilder.Vehicles
             sb.Append("Boat type: ").Append(BoatType);
             return sb.ToString();
         }
+
+        public override string stringWithPadding(int typeColumn, int IDColumn, int colourColumn, int weightColumn, int optionalColumn1, int optionalColumn2, int optionalColumn3)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(base.stringWithPadding(typeColumn, IDColumn, colourColumn, weightColumn));
+            string s = "".PadRight(optionalColumn1-this.propertyLengthIndividualProp1 + extraPadding);
+            sb.Append("Boat type: ").Append(BoatType).Append(s);
+            return sb.ToString();
+        }
         // Types
         // ====================================================================
         public enum Type

@@ -166,13 +166,28 @@ namespace GarageBuilder
         {
             if(VehicleCount > 0)
             {
+                int[] columnLength = new int[7];
+
+                for (int i = 0; i < StorageSpace.Length; i++)
+                {
+                    if (StorageSpace[i] != null)
+                    {
+                        columnLength[0] = int.Max(columnLength[0], StorageSpace[i].propertyLengthType);
+                        columnLength[1] = int.Max(columnLength[1], StorageSpace[i].propertyLengthID);
+                        columnLength[2] = int.Max(columnLength[2], StorageSpace[i].propertyLengthColour);
+                        columnLength[3] = int.Max(columnLength[3], StorageSpace[i].propertyLengthWeight);
+                        columnLength[4] = int.Max(columnLength[4], StorageSpace[i].propertyLengthIndividualProp1);
+                        columnLength[5] = int.Max(columnLength[5], StorageSpace[i].propertyLengthIndividualProp2);
+                        columnLength[6] = int.Max(columnLength[6], StorageSpace[i].propertyLengthIndividualProp3);
+                    }
+                }
+
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < StorageSpace.Length; i++)
                 {
                     if (StorageSpace[i] != null)
                     {
-                        sb.Append("Type length: " + StorageSpace[i].propeprtyLengthType + " ");
-                        sb.Append(StorageSpace[i]);
+                        sb.Append(StorageSpace[i].stringWithPadding(columnLength[0], columnLength[1], columnLength[2], columnLength[3], columnLength[4], columnLength[5], columnLength[6]));
                         sb.Append('\n');
                     }
                 }

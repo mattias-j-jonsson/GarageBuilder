@@ -42,5 +42,16 @@ namespace GarageBuilder.Vehicles
             sb.Append("Electric: ").Append(Electric);
             return sb.ToString();
         }
+
+        public override string stringWithPadding(int typeColumn, int IDColumn, int colourColumn, int weightColumn, int optionalColumn1, int optionalColumn2, int optionalColumn3)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(base.stringWithPadding(typeColumn, IDColumn, colourColumn, weightColumn));
+            string s = "".PadRight(optionalColumn1-this.propertyLengthIndividualProp1 + extraPadding);
+            sb.Append("Four wheel drive: ").Append(FourWheelDrive).Append(s);
+            s = "".PadRight(optionalColumn2-this.propertyLengthIndividualProp2 + extraPadding);
+            sb.Append("Electric: ").Append(Electric).Append(s);
+            return sb.ToString();
+        }
     }
 }

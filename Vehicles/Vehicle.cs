@@ -13,6 +13,7 @@ namespace GarageBuilder.Vehicles
         private string colour;
         private int weight;
         private const int maxWeight = 800000;
+        protected const int extraPadding = 5;
         // int size; // optional functionality
         
 
@@ -63,6 +64,7 @@ namespace GarageBuilder.Vehicles
         // some simple properties used for formatting output consisting of Vehicles properties
         public int propertyLengthType {get {return this.GetType().Name.Length;}}
         public int propertyLengthID {get {return this.Id.Length;}}
+        public int propertyLengthColour {get {return this.Colour.Length;}}
         public int propertyLengthWeight {get {return this.Weight.ToString().Length;}}
         public virtual int propertyLengthIndividualProp1 {get {return 0;}}
         public virtual int propertyLengthIndividualProp2 {get {return 0;}}
@@ -97,6 +99,21 @@ namespace GarageBuilder.Vehicles
             sb.Append("ID: ").Append(Id).Append("    ");
             sb.Append("Colour: ").Append(Colour).Append("    ");
             sb.Append("Weight: ").Append(Weight).Append("    ");
+            return sb.ToString();
+        }
+
+        public virtual string stringWithPadding(int typeColumn, int IDColumn, int colourColumn, int weightColumn, int optionalColumn1=0, int optionalColumn2=0, int optionalColumn3=0)
+        {
+            StringBuilder sb = new StringBuilder();
+            string typeAsString = this.GetType().Name;
+            string s = "".PadRight(typeColumn-typeAsString.Length + extraPadding);
+            sb.Append("Type: ").Append(typeAsString).Append(s);
+            s = "".PadRight(IDColumn-Id.Length + extraPadding);
+            sb.Append("ID: ").Append(Id).Append(s);
+            s = "".PadRight(colourColumn-Colour.Length + extraPadding);
+            sb.Append("Colour: ").Append(Colour).Append(s);
+            s = "".PadRight(weightColumn-Weight.ToString().Length + extraPadding);
+            sb.Append("Weight: ").Append(Weight).Append(s);
             return sb.ToString();
         }
     }

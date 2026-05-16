@@ -41,6 +41,17 @@ namespace GarageBuilder.Vehicles
             sb.Append("Cylinder volume: ").Append(CylinderVolume);
             return sb.ToString();
         }
+
+        public override string stringWithPadding(int typeColumn, int IDColumn, int colourColumn, int weightColumn, int optionalColumn1, int optionalColumn2, int optionalColumn3)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(base.stringWithPadding(typeColumn, IDColumn, colourColumn, weightColumn));
+            string s = "".PadRight(optionalColumn1-this.propertyLengthIndividualProp1 + extraPadding);
+            sb.Append("Weight class: ").Append(Weightclass).Append(s);
+            s = "".PadRight(optionalColumn2-this.propertyLengthIndividualProp2 + extraPadding);
+            sb.Append("Cylinder volume: ").Append(CylinderVolume).Append(s);
+            return sb.ToString();
+        }
         // types
         // ====================================================================
         public enum WeightClass
