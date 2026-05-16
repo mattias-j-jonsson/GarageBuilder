@@ -71,9 +71,7 @@ namespace GarageBuilder
                             }
                             else
                             {
-                                Console.WriteLine($"indexOfVehicle: {indexOfVehicle}");
                                 garage.RemoveVehicle(indexOfVehicle);
-                                Console.WriteLine($"Vehicle Count: {garage.VehicleCount}");
                                 Console.Read();
                             }
                             // Console.Read();

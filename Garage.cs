@@ -105,7 +105,7 @@ namespace GarageBuilder
             {
                 int occupiedSlots = 0;
                 int i = 0;
-                while (occupiedSlots < index)
+                while (occupiedSlots < index || StorageSpace[i] == null)
                 {
                     if(StorageSpace[i] != null)
                     {

@@ -95,9 +95,16 @@ namespace GarageBuilder
             string[] vehiclesWithOptions = new string[indexOfLast+1];
             Array.Copy(vehicles, vehiclesWithOptions, vehicles.Length);
             vehiclesWithOptions[indexOfLast] = "None";
-            DrawChoiceMenu(vehiclesWithOptions, out int choice, "Which vehicle do yout want to remove?");
-            
-            return choice;
+            string strChoice = DrawChoiceMenu(vehiclesWithOptions, out int choice, "Which vehicle do yout want to remove?");
+            if (choice != indexOfLast)
+            {
+                strChoice = DrawChoiceMenu(["Yes", "No"], $"Do you want do remove this vehicle\n{strChoice}");
+                if (strChoice == "Yes")
+                {
+                    return choice;
+                }
+            }
+            return indexOfLast;
         }
         public static int CreateGarageMenu(int currentInventory)
         {
