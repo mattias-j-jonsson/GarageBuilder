@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 using GarageBuilder.Vehicles;
@@ -74,26 +75,7 @@ namespace GarageBuilder
                     index++;
                 }
                 storageSpace[index] = v; // should copy rather than put input reference?
-                if (v is Airplane)
-                {
-                    airplaneCount++;
-                }
-                else if (v is Boat)
-                {
-                    boatCount++;
-                }
-                else if (v is Bus)
-                {
-                    busCount++;
-                }
-                else if (v is Car)
-                {
-                    carCount++;
-                }
-                else if (v is Motorcycle)
-                {
-                    motorcycleCount++;
-                }
+                modifyVehicleCounter(v, 1);
             }
         }
 
@@ -115,7 +97,56 @@ namespace GarageBuilder
 
         public void RemoveVehicle(int index)
         {
+            if (index >= VehicleCount || index < 0)
+            {
+                throw new ArgumentException("Error: Invalid index. Vehicle removal aborted.");
+            }
+            else
+            {
+                int occupiedSlots = 0;
+                int i = 0;
+                while (occupiedSlots < index)
+                {
+                    if(StorageSpace[i] != null)
+                    {
+                        occupiedSlots++;
+                    }
+                    i++;
+                }
+                modifyVehicleCounter(StorageSpace[i], -1);
+                StorageSpace[i] = null;
+
+            }
             return;
+        }
+
+        private void modifyVehicleCounter(Vehicle v, int modifier)
+        {
+            if(modifier != -1 && modifier != 1)
+            {
+                throw new ArgumentException("Error: Illegal modifier to garage inventory");
+            }
+
+            if (v is Airplane)
+            {
+                airplaneCount += modifier;
+            }
+            else if (v is Boat)
+            {
+                boatCount += modifier;
+            }
+            else if (v is Bus)
+            {
+                busCount += modifier;
+            }
+            else if (v is Car)
+            {
+                carCount += modifier;
+            }
+            else if (v is Motorcycle)
+            {
+                motorcycleCount += modifier;
+            }
         }
 
 

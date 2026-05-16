@@ -31,17 +31,12 @@ namespace GarageBuilder
                 string menuChoice = MenuSystem.MainMenu(menuOptions).Split(" ")[0];
                 switch (menuChoice)
                 {
-                    case "Quit":
-                        running = false;
-                        break;
-                    case "Print":
-                        Console.WriteLine(garage.ToString());
-                        Console.Read();
-                        break;
                     case "Add":
                         if(garage.IsFull)
                         {
                             Console.WriteLine("The garage has reached its limit. Please remove vehicles to free up space");
+                            Console.WriteLine("Press ENTER to return to menu.");
+                            Console.Read();
                         }
                         else
                         {
@@ -55,6 +50,33 @@ namespace GarageBuilder
                                 Console.WriteLine($"Error: {e.Message}\nVehicle insert aborted. Press ENTER to return to menu");
                                 Console.Read();
                             }
+                        }
+                        break;
+                    case "Remove":
+                        if (garage.VehicleCount == 0)
+                        {
+                            Console.WriteLine("The garage is Empty.");
+                            Console.WriteLine("Press ENTER to return to menu.");
+                            Console.Read();
+                        }
+                        else
+                        {
+                            string[] vehiclesAsMenuOptions = garage.ToString().Split("\n");
+                            int indexOfVehicle = MenuSystem.RemoveVehicleMenu(vehiclesAsMenuOptions);
+                            if (indexOfVehicle >= garage.VehicleCount)
+                            {
+                                Console.WriteLine("Vehicle removal aborted.");
+                                Console.WriteLine("Press ENTER to return to menu.");
+                                Console.Read();
+                            }
+                            else
+                            {
+                                Console.WriteLine($"indexOfVehicle: {indexOfVehicle}");
+                                garage.RemoveVehicle(indexOfVehicle);
+                                Console.WriteLine($"Vehicle Count: {garage.VehicleCount}");
+                                Console.Read();
+                            }
+                            // Console.Read();
                         }
                         break;
                     case "Find":
@@ -73,6 +95,13 @@ namespace GarageBuilder
                             }                            
                         }
                         Console.Read();
+                        break;
+                    case "Print":
+                        Console.WriteLine(garage.ToString());
+                        Console.Read();
+                        break;
+                    case "Quit":
+                        running = false;
                         break;
                     default:
                         break;

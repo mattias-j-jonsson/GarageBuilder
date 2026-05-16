@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection.Metadata;
+using System.Xml.Serialization;
 using GarageBuilder.Vehicles;
 
 namespace GarageBuilder
@@ -88,6 +89,16 @@ namespace GarageBuilder
             return null;
         }
 
+        public static int RemoveVehicleMenu(string[] vehicles)
+        {
+            int indexOfLast = vehicles.Length;
+            string[] vehiclesWithOptions = new string[indexOfLast+1];
+            Array.Copy(vehicles, vehiclesWithOptions, vehicles.Length);
+            vehiclesWithOptions[indexOfLast] = "None";
+            DrawChoiceMenu(vehiclesWithOptions, out int choice, "Which vehicle do yout want to remove?");
+            
+            return choice;
+        }
         public static int CreateGarageMenu(int currentInventory)
         {
             string input = DrawInputMenu("What size of garage do you want?");
